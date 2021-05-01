@@ -1,3 +1,18 @@
 --Readme--
 
-This is the readme for your ghost. I would highly recommend writing your own readme file in here. Information you might want to include would be your name, your site, the characters you're using, features they may have, places you can be contacted, hotkeys they have set, what kind of conversations they have, or anything else like that that you think your user might like to know.
+Miitopia Friends
+This is a ghost with many customization features!
+
+Ideas:
+* Customizable shells for mii creation.
+* Saving and loading user miis
+* Miitopia personalities
+* when it starts, the guardian greets you to create your mii and choose your job.
+* your main mii refers to you as their look alike
+* if you do something, you can unlock the great sage, the ex dark lord and the reborn as extra miis
+  you can interact with.
+* you unlock them in this order: Great Sage first, Ex-Dark Lord second, and the reborn last
+* you can increment your relationship with each mii individually.
+* if special conditions are met, you can see a special mode with the great sage.
+* you can see your friendship with each mii in their menu
+* you can customize your mii by selecting icons instead of going in a menu.
