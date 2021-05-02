@@ -16,3 +16,4 @@ Ideas:
 * if special conditions are met, you can see a special mode with the great sage.
 * you can see your friendship with each mii in their menu
 * you can customize your mii by selecting icons instead of going in a menu.
+* unique dialogue for each personality

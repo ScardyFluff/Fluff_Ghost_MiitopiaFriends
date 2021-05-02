@@ -1,4 +1,66 @@
-//---------------------------Surfaces.txt--------------------------
+//--- Surfaces --------------------------------------------------
+
+//--- The Hero's Poses -------------------------
+//Default
+surface0
+{
+//Basic
+element0,overlay,surface0.png,0,0
+
+//Collisions
+collision0,0,0,1,1,Head
+
+//Intervals
+
+
+//Mii Parts
+20interval,bind
+20pattern0,400,0,add,0,0
+
+//Outfits
+
+}
+
+
+//--- The Friend's Poses -------------------------
+//Default
+surface10
+{
+//Basic
+element0,overlay,surface10.png,0,0
+
+//Collisions
+collision0,0,0,1,1,Head
+
+//Intervals
+
+//Mii Parts
+20interval,bind
+20pattern0,400,0,add,0,0
+
+//Outfits
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Blegh alright here we go. Surfaces.txt is the backbone of the shell you make for your ghost. Making the images isn't enough, a ghost needs something to tell it where those images go and how to display them, and that's where surfaces.txt comes in.
 
 //Images are brought together into a thing I generally refer to as a pose, but what is defined in the shell and this text file as a Surface. Each Surface can contain any number of images in it doing any number of things. These Surfaces are what is being called when you use the \s[] tag when writing dialogue. For example, you could create a pose with three images under Surface5, and then in dialogue, you would call that pose made of three images with \s[5]. That's the basic jist of how this file works.
@@ -77,11 +139,11 @@
 
 //--The Main Character's Poses---------------------------------------------------------
 
-surface0
+//surface0
 //surface0 is the basic default pose for your main character. I'll include a few examples of things you can do in this pose, but you won't have to use any of them if you don't want to. They're mostly for (my) reference and advanced users for the most part.
-{
-collision0,57,22,112,46,Head
-collision1,65,50,105,91,Face
+//{
+//collision0,57,22,112,46,Head
+//collision1,65,50,105,91,Face
 
 //Collisions define "hot spots" on your ghost where the user can pet or double click them (as defined in mouse.dic). You can see that there are two collisions here, collision0 and collision1. You can add more by copypasting and raising the number, like collision2, collision3, collision4, and so on.
 //The four numbers after that are x/y coordinates. Specifically, the first two numbers are the x/y coordinates of the TOP LEFT corner of your hotspot. The third and fourth numbers are the coordinates of the BOTTOM RIGHT corner of the hotspot. Essentially, this is outlining a rectangle.
@@ -94,7 +156,7 @@ collision1,65,50,105,91,Face
 
 //If you REALLY can't figure out collisions and just can't get them to work, you can delete the two collision lines. This will make your ghost un-pettable though and much of what you defined in mouse.dic won't work. Their menus should still function though I think. But if you are desperate, this is an option.
 
-element0,overlay,surface0.png,0,0
+//element0,overlay,surface0.png,0,0
 //Here is the line of code that defines the base image we'll be using for the ghost. If you aren't just replacing my images and moving on, you'll want to replace the surface0.png part with whatever image file you're using as your base pose. But really, your base default pose should ALWAYS be surface0.png for your main character. There are very few situations where this line would need to be changed in any way. Likewise, I wouldn't change it from surface10 for your secondary character's default pose either.
 
 
@@ -115,11 +177,11 @@ element0,overlay,surface0.png,0,0
 //--Blinking---------------------------------------------------------------------------
 //Here's the animation block to set up a random blink.
 
-0interval,random,4
-0pattern0,-1,10,overlay,0,0
-0pattern1,1002,5,overlayfast,0,0
-0pattern2,1001,10,overlayfast,0,0
-0pattern3,-1,3,overlay,0,0
+//0interval,random,4
+//0pattern0,-1,10,overlay,0,0
+//0pattern1,1002,5,overlayfast,0,0
+//0pattern2,1001,10,overlayfast,0,0
+//0pattern3,-1,3,overlay,0,0
 
 //For those just replacing my images, you won't have to mess with any of this. Just be sure that your blink frames look like my blink frames. For those who are going to reuse this block or do their own thing, all you need to do is replace 1001 and 1002 with the file numbers of your new blink frames. Everything else can stay exactly the same.
 //If you want to know more about the exact mechanics of how these lines of animation work, I'd recommend reading the page on the walkthrough site about SERIKO coding, which breaks it down piece by piece. I'll touch on it a little here though.
@@ -131,24 +193,24 @@ element0,overlay,surface0.png,0,0
 //--Talking-----------------------------------------------------------------------------
 //This block deals with your ghost's mouth moving as it speaks to you. 
 
-1interval,talk,4
-1pattern0,0,0,alternativestart,[2.3.4]
+//1interval,talk,4
+//1pattern0,0,0,alternativestart,[2.3.4]
 
 //You can see some unique things about this block. The interval is set to talk,4, which means it'll run for every four characters or so that appear in the balloon. You can change 4 to a different number but there's no reason to, I wouldn't do it myself.
 //Below that line, you can see alternativestart, then some numbers in some brackets. What this does is that it will randomly select an interval with that number as it runs. Look below, do you see the intervals numbered 2, 3, and 4? Those are the intervals this animation will call. You can add numbers to those brackets or take them away if you want, so you could do things like [2.3.4.5] or [2.3] or whatever.
 
-2interval,never
-2pattern0,1102,10,overlay,0,0
-2pattern1,1101,13,overlay,0,0
-2pattern2,-1,10,overlay,0,0
+//2interval,never
+//2pattern0,1102,10,overlay,0,0
+//2pattern1,1101,13,overlay,0,0
+//2pattern2,-1,10,overlay,0,0
 
-3interval,never
-3pattern0,1101,14,overlay,0,0
-3pattern1,-1,10,overlay,0,0
+//3interval,never
+//3pattern0,1101,14,overlay,0,0
+//3pattern1,-1,10,overlay,0,0
 
-4interval,never
-4pattern0,1102,14,overlay,0,0
-4pattern1,-1,10,overlay,0,0
+//4interval,never
+//4pattern0,1102,14,overlay,0,0
+//4pattern1,-1,10,overlay,0,0
 
 //These three intervals handle the talk frames. For those who are doing their own thing or adding talk frames to their other Surfaces, all you need to do is copy and paste the talk blocks (1interval to 4interval) into the Surface you want and replace 1101 and 1102 with the appropriate file numbers for your new talk frames. You can also add more frames to your talking animation if you want. Those just replacing my images don't have to worry about any of this, as long as your mouth frames look like mine.
 //IMPORTANT NOTE: IF YOU'RE DOING A PROFILE VIEW AND YOUR MOUTH IS MOVING OUTSIDE THE BODY then you're going to need to use Replace instead. I'm sorry for your loss. I'll get into Replace later. Your other option is to change your pose or move your mouth or do something to make sure your mouth's movement does not break your character's silhouette. If any furries are reading this, you will probably run into this problem a lot with any kind of side-view of a muzzle.
@@ -165,87 +227,33 @@ element0,overlay,surface0.png,0,0
 //}
 
 //And that's it. You can do this with Triangle below too, if you just can't get it to work. If you do do this, make sure to delete the blinking/talking .png files as well to clear up any error messages that may come up as a result of them not being used.
-}
+//}
 
 //Now we can move on to the easy part! For ease of use, this template is set up to use stationary images for poses instead of animated ones like surface0 above. Because the other surfaces won't have blinking eyes or moving mouths or anything like that, all you have to do is put in the right file number and they'll be done. And if you're just replacing my images, you probably won't have to do anything!
 //This isn't to say you can't ADD blinking and talking frames to these surfaces if you want to. It's easy! All you have to do is copy the right code chunks from surface0 and paste them in here, then replace the file numbers as you need. And you'd have to draw the frames of course. And of course, you can massively expand these as well, depending on what you plan on doing.
 
 //tl;dr - Put in the correct file number for each of the following poses, or leave them alone if you saved your images over mine.
 
-//Main Character Embarrassed pose
-surface1
-{
-element0,overlay,surface1501.png,0,0
-}
-
-//Main Character Surprised pose
-surface2
-{
-element0,overlay,surface1502.png,0,0
-}
-
-//Main Character Worried pose
-surface3
-{
-element0,overlay,surface1503.png,0,0
-}
-
-//Main Character Sad/Disappointed pose
-surface4
-{
-element0,overlay,surface1504.png,0,0
-}
-
-//Main Character Smiling pose
-surface5
-{
-element0,overlay,surface1505.png,0,0
-}
-
-//Main Character Contented pose
-surface6
-{
-element0,overlay,surface1506.png,0,0
-}
-
-//Main Character Angry pose
-surface7
-{
-element1,overlay,surface1507.png,0,0
-}
-
-//Main Character Thoughtful Pose
-surface8
-{
-element1,overlay,surface1508.png,0,0
-}
-
-//Main Character Bored pose
-surface9
-{
-element1,overlay,surface1509.png,0,0
-}
-
 
 //--The Side Character's poses------------------
 //I actually intended to do the same thing here with Triangle's default pose as I did with Girl, but then I remembered that he has no mouth, so he can't even use talking frames, haha. He can however use blinking frames! So I'm going to copy the same blinking chunk from surface0 and put it here.
 
-surface10
-{
-collision0,58,199,85,218,Face
-collision1,96,128,140,162,Point
+//surface10
+//{
+//collision0,58,199,85,218,Face
+//collision1,96,128,140,162,Point
 
 //Here are Triangle's collisions. Because they are within Surface10, they only apply when he is in this pose. As mentioned above in surface0, you can set unique collisions for any Surface you like, or you can use surface.append at the end of this file to apply the same collisions to a wide range of surfaces.
 
-element0,overlay,surface10.png,0,0
+//element0,overlay,surface10.png,0,0
 //Here is Triangle's base frame.
 
 //Blinking
-0interval,random,4
-0pattern0,-1,10,overlay,0,0
-0pattern1,2002,5,overlayfast,0,0
-0pattern2,2001,10,overlayfast,0,0
-0pattern3,-1,3,overlay,0,0
+//0interval,random,4
+//0pattern0,-1,10,overlay,0,0
+//0pattern1,2002,5,overlayfast,0,0
+//0pattern2,2001,10,overlayfast,0,0
+//0pattern3,-1,3,overlay,0,0
 
 //Then all I did was change the file numbers to the right numbers for Triangle's blink. Done!
 //If your second character has a mouth though and wants to use the talking frames, you'd want to borrow the code from surface0 for it. I'll put it here just to make it a bit easier to find, but I'll comment it out. If you're going to use it, erase the slashes // to uncomment it and put in the right file numbers for your mouth frames instead of 1102 and 1101. Done!
@@ -266,63 +274,9 @@ element0,overlay,surface10.png,0,0
 //4interval,never
 //4pattern0,1102,14,overlay,0,0
 //4pattern1,-1,10,overlay,0,0
-}
+//}
 
 //And that's it for Triangle's default pose! Like with the main character poses above, all we have to do for the following surfaces is make sure they're pointing at the right file number!
-
-//Side Character Embarrassed pose
-surface11
-{
-element1,overlay,surface2501.png,0,0
-}
-
-//Side Character Surprised pose
-surface12
-{
-element1,overlay,surface2502.png,0,0
-}
-
-//Side Character Worried pose
-surface13
-{
-element1,overlay,surface2503.png,0,0
-}
-
-//Side Character Sad/Disappointed pose
-surface14
-{
-element1,overlay,surface2504.png,0,0
-}
-
-//Side Character Smiling pose
-surface15
-{
-element1,overlay,surface2505.png,0,0
-}
-
-//Side Character Contented pose
-surface16
-{
-element1,overlay,surface2506.png,0,0
-}
-
-//Side Character Angry pose
-surface17
-{
-element1,overlay,surface2507.png,0,0
-}
-
-//Side Character Thoughtful pose
-surface18
-{
-element1,overlay,surface2508.png,0,0
-}
-
-//Side Character Bored pose
-surface19
-{
-element1,overlay,surface2509.png,0,0
-}
 
 //And that's it! We're done! But before we go, there are a few more little things you may want to think about.
 
@@ -333,13 +287,13 @@ element1,overlay,surface2509.png,0,0
 //Surface.append basically applies the coding within the brackets to the poses specified in the number range. Specifically in this case it applies to collisions. If the collision areas for your ghost don't change very much from pose to pose, then you can set them here for multiple surfaces at once and save yourself some time.
 //I'm not actually going to use surface.append since Girl and Triangle move around too much for their collisions to be that consistent between poses, but it's something could potentially come in handy for advanced users or ghost makers who have very stationary ghosts, so I'll leave it here and just append it to surfaces that don't exist so it won't get in the way. If you want to use this, study this example and see how it can apply to your own ghost.
 
-surface.append500-590 //this is appending this code to Surface500 through Surface590.
+//surface.append500-590 //this is appending this code to Surface500 through Surface590.
 //There are actually a few special ways you can refine this! For example, surface.append500-590,205 would append the code to Surface500 to Surface590, as well as Surface205. 
 //surface.append500-590,205,!507-509 it would do the same, except it would skip Surfaces507 through 509.
 //you can have multiple surface.appends as well, if you want to append one set of code to one range of surfaces and another to another. For example, one set of collisions to your main character and one to your side character.
-{
-collision0,15,16,111,48,Face
-collision1,40,50,102,84,Point
+//{
+//collision0,15,16,111,48,Face
+//collision1,40,50,102,84,Point
 
 //Because this is under surface.append, that means that these collisions are being set for every surface between the number range specified, in this case every Surface from 500 to 590. Make sure to put surface.append at the end of your file, so it can append the values to surfaces that exist.
 
@@ -353,7 +307,7 @@ collision1,40,50,102,84,Point
 //One final note on bind, note that it is also under surface.append along with the collisions up there. Meaning that this clothing would bind across those multiple surfaces just like the collisions. You can set up bind individually for a pose I think, but I honestly haven't messed around with it very much.
 
 //You can use surface.append to technically apply anything across multiple poses, I'm pretty sure... even images. I haven't messed with this too much myself, but I'm pretty sure it's possible. As with many things with ghosts, this can come in handy if you're creative.
-}
+//}
 
 
 //--Unique Collision cursors------------------
