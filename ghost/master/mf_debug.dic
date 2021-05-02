@@ -1,0 +1,37 @@
+OnMiiMaker //\![raise,OnMiiMaker]
+{
+//Makes the balloon big
+    _page = "\b2\_q"
+    choicesel = SPLIT(selected,",")
+    _s = ARRAYSIZE(choicesel)
+    --
+    for _i=0;_i<_s;_i++
+    {
+        if choicesel[_i] == 1; _page += "\__q[OnMiiPart," + _i + "]\_b[images\try1.png,inline]\__q"
+        else; _page += "\__q[OnMiiPart," + _i + "]\_b[images\try2.png,inline]\__q"
+    }
+    --
+    _page
+}
+
+OnMiiPart
+{
+    choicesel[reference0] = onezero(choicesel[reference0])
+    selected = ""
+    _s = ARRAYSIZE(choicesel)
+    --
+    for _i=0;_i<_s;_i++
+    {
+        selected += choicesel[_i] + ","
+    }
+    --
+    selected = ERASE(selected,-1,1)
+    --
+    OnMiiMaker
+}
+
+onezero //onezero(variable)
+{
+    if _argv[0] == 1 || _argv[0] == "1"; 0
+    else; 1
+}

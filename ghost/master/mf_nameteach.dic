@@ -15,7 +15,7 @@ OnTeachName
 {
 	if reference0 == "TEACHNAME" //ignore this
 		{
-		"\0\s[0]The user wants to change their name. What do you want it to be?\![open,inputbox,OnNameTeach,-1]\e"
+		"\0\s[0]Choose a new name.\![open,inputbox,OnNameTeach,-1]\e"
 		//This is the bit of dialogue you can rewrite if you want. Note that this line ends with \![open,inputbox,OnNameTeach,-1]. You may recognize this from bootend.dic. Essentially, this will lead to the next function. Make sure you don't delete that tag! The rest you can do whatever with though.
 		}
 	else
@@ -85,32 +85,55 @@ OnNameTeach
 	//username = tempname
 	//"\0\s[0]The user is now called %(username).\e"
 	//}
-	{
-		"\0\s[0]Do you want a title?\w4\n\n[half]\![*]\q[Nope,titlenone]\n"
-		//You can replace "\0\s[0]Do you want a title?", but don't touch the rest of it.
+	
+		"\0\s[0]...What is it?"
 		--
-		if presuffix == "masculine" //this value was defined in bootend.dic and menu.dic when the user chose their pronouns. Thus, if someone chose he/him pronouns, they would be able to choose Mr. or Master.
-		{
-		"\![*]\q[Mr.,titlemr]\n/
-		\![*]\q[Master,titlemaster]\n"
-		}
-		elseif presuffix == "feminine" //Likewise, if someone chose she/her pronouns, they could choose Ms. or Lady.
-		{
-		"\![*]\q[Ms.,titlems]\n/
-		\![*]\q[Lady,titlelady]\n"
-		}
-		-- //the titles after this are gender neutral and will appear for all users. If you want to remove the masculine and feminine titles entirely, just delete from the curly bracket one line up to the double dashes above "if presuffix == "masculine". That should leave only the neutral titles. Make sure to leave a set of double dashes above the neutral titles though. You can also just put the feminine and masculine titles in here too if you want all titles to be available to all users at all times.
-		"\![*]\q[-ssi,titlessi]\n/
-		\![*]\q[-san,titlesan]\e"
-		//Note that the final line here ends with \e instead of \n/, since it is the final option. Make sure your final option (and ONLY your final option) always ends with \e. More on that in the box below.
-	}
+		"\n\n[half]/
+		\![*]\q[I want a title!,titlegimme]\n/
+		\![*]\q[Nothing really.,titlenone]\e"
+		//You can replace "\0\s[0]Do you want a title?", but don't touch the rest of it.
+
 }
 	//*********************Advanced User Info*******************************
 	//Adding new titles for your users to use is simply a matter of copy and pasting creatively. You can see how the ghost puts together the title and your name in the Select. sections below. Above, you simply need to add a new option and link it to a new Select. For example, you could add "\![*]\q[Mistress,titlemistress]\n/" between Ms. and Lady up there, then write up a Select.titlemistress below that fits the pattern of the others.
 	//***********************************************************************
 	
 	//The following Select.title[word] functions add the title to the user's name, then go to the final step, NameDone. You don't have to touch any of these. Advanced users, notice how these match the linked functions in the choices above.
-	
+
+Select.titlegimme
+	{
+		"\0\s[0]Which one then?"
+		--
+		if presuffix == "masculine" //this value was defined in bootend.dic and menu.dic when the user chose their pronouns. Thus, if someone chose he/him pronouns, they would be able to choose Mr. or Master.
+		{
+		"\n\n[half]/
+		\![*]\q[Mr.,titlemr]\n/
+		\![*]\q[Sir,titlesir]\n/
+		\![*]\q[-kun,titlekun]\n/
+		\![*]\q[-chan,titlechan]\n"
+		}
+		elseif presuffix == "feminine" //Likewise, if someone chose she/her pronouns, they could choose Ms. or Lady.
+		{
+		"\n\n[half]/
+		\![*]\q[Ms.,titlems]\n/
+		\![*]\q[Lady,titlelady]\n/
+		\![*]\q[-kun,titlekun]\n/
+		\![*]\q[-chan,titlechan]\n"
+		}
+		elseif presuffix == "genderless"
+		{
+		"\n\n[half]/
+		\![*]\q[Mx.,titlemx]\n/
+		\![*]\q[Dear,titledear]\n/
+		\![*]\q[-kun,titlekun]\n/
+		\![*]\q[-chan,titlechan]\n"
+		}
+		-- //the titles after this are gender neutral and will appear for all users. If you want to remove the masculine and feminine titles entirely, just delete from the curly bracket one line up to the double dashes above "if presuffix == "masculine". That should leave only the neutral titles. Make sure to leave a set of double dashes above the neutral titles though. You can also just put the feminine and masculine titles in here too if you want all titles to be available to all users at all times.
+		"\n[half]/
+		\![*]\q[...Nevermind,titlenone]\e"
+		//Note that the final line here ends with \e instead of \n/, since it is the final option. Make sure your final option (and ONLY your final option) always ends with \e. More on that in the box below.
+	}
+
 Select.titlenone
 {
 		username = tempname
@@ -123,9 +146,9 @@ Select.titlemr
 		NameDone
 }
 
-Select.titlemaster
+Select.titlesir
 {
-		username = "Master " + tempname
+		username = "Sir " + tempname
 		NameDone
 }
 		
@@ -141,15 +164,27 @@ Select.titlelady
 		NameDone
 }
 
-Select.titlessi
+Select.titlemx
 {
-		username = tempname + "-ssi"
+		username = "Mx. " + tempname
 		NameDone
 }
 
-Select.titlesan
+Select.titledear
 {
-		username = tempname + "-san"
+		username = "Dear " + tempname
+		NameDone
+}
+
+Select.titlekun
+{
+		username = tempname + "-kun"
+		NameDone
+}
+
+Select.titlechan
+{
+		username = tempname + "-chan"
 		NameDone
 }
 
@@ -163,11 +198,11 @@ NameDone
 		firstboot = 0 //this turns the flag off
 		
 		//This dialogue will display the first time the user puts in their name. You might want to add some closing thoughts to the introduction your ghost had in OnFirstBoot, or directions about how to use the ghost, or something like that. It's up to you!
-		"\0\s[0]Thank you for inputting your name for the first time, %(username).\w8\1\s[10]Good luck on finishing your ghost!\e"
+		"\0\s[0]I'll call you %(username) then.\e"
 	}
 	else
 	{
-	"\0\s[0]The user is now called %(username).\e"
+	"\0\s[0]You're now called %(username).\e"
 	//Rewrite this as you like. Note the %(username) tag here, as you should be well familiar with by now from the walkthrough and the other .dic files. That will display the name the user just created.
 	}	
 }
