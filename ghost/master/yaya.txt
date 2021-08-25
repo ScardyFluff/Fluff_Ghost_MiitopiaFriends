@@ -25,6 +25,7 @@ dic, mf_commu.dic
 dic, mf_nameteach.dic
 dic, mf_anchor.dic
 dic, mf_debug.dic
+dic, mf_miimaker.dic
 
 //---- Log Location -------------------------------------------------------------------------
 //I'm not entirely sure what this does, but basically don't touch it.

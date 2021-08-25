@@ -1,0 +1,42 @@
+OnMiiMaker //\![raise,OnMiiMaker]
+{
+//stores balloon biggifier in temp var _page.
+    _page = "\b2\_q"
+//var choicesel's value is now the split up contents of var selected. also , is the splitter
+    choicesel = SPLIT(selected,",")
+//temp var _s' value is now the var choicesel's total number of elements
+    _s = ARRAYSIZE(choicesel)
+//this thing... it splits the above??
+    --
+//_i is now 0, if _i is less than _s's variable, add 1 to _i
+    for _i = 0; _i < _s; _i++
+    {
+//
+        if choicesel[_i] == 1; _page += "\__q[OnMiiPart," + _i + "]\_b[images\try1.png,inline]\__q"
+        else; _page += "\__q[OnMiiPart," + _i + "]\_b[images\try2.png,inline]\__q"
+    }
+    --
+    _page
+}
+
+OnMiiPart
+{
+    choicesel[reference0] = onezero(choicesel[reference0])
+    selected = ""
+    _s = ARRAYSIZE(choicesel)
+    --
+    for _i=0;_i<_s;_i++
+    {
+        selected += choicesel[_i] + ","
+    }
+    --
+    selected = ERASE(selected,-1,1)
+    --
+    OnMiiMaker
+}
+
+onezero //onezero(variable)
+{
+    if _argv[0] == 1 || _argv[0] == "1"; 0
+    else; 1
+}
